@@ -97,9 +97,9 @@ function draw() {
     text("Instructions:-", 10, 80);
     text("\nYou will be followed by a witch from the starting of the game and you have \nto stay safe from the witch's lazer which she will be shooting randomly at you.", 10, 100);
     text("\nYou have to score as much as you can", 10, 170);
-    text("\n1. Gather the Good Pumpkin, For each Good Pumpkin You Eat Your Score Increses By 16.", 10, 200);
-    text("\n2. Don't Eat The Evil Pumpkin, For each Evil Pumpkin You Eat Your Score Decreses By 4.", 10, 220);
-    text("\n3. Each Time You Get Hit By The Witch's Lazer, Yor Health Decreses By 1 And Your Score Decreases By 5.", 10, 240);
+    text("\n1. Gather the Good Pumpkin, For each Good Pumpkin You Eat Your Score Increases By 16.", 10, 200);
+    text("\n2. Don't Eat The Evil Pumpkin, For each Evil Pumpkin You Eat Your Score Decreases By 4.", 10, 220);
+    text("\n3. Each Time You Get Hit By The Witch's Lazer, Yor Health Decreases By 1 And Your Score Decreases By 5.", 10, 240);
     text("\n4. If Your Health Will be Less Than 5, You Will Get A Potion Which On Eating Will Increase Your Health By 1 \n\t\tBut At The Same Time, It Will Decrease your Score By 8.", 10, 263);
     text("\n5. Press P to pause the game and S to resume the game.", 10, 309);
     text("\n6. Press M to mute the sound and U to again play the sound.", 10, 329);
