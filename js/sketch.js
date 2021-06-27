@@ -92,6 +92,7 @@ function setup() {
 function draw() {
   if(gmst === "startscreen"){
     textSize(20);
+    bkgrdSound.stop();
     fill("black");
     text("Hi, This Is A Game Made By Devesh Sood", 500, 20);
     text("Instructions:-", 10, 80);
@@ -400,7 +401,7 @@ function playSound(){
 function gameStart(){
   if(keyCode === 32){
     gmst = 'play';
-
+    bkgrdSound.loop();
     h = createSprite(400,380,20,20);
     h.addImage(hi);
     if(h){
