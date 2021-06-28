@@ -27,7 +27,7 @@ function preload() {
   
  gii = loadAnimation("images/rf1.png","images/rf2.png","images/rf3.png","images/rf4.png","images/rf5.png","images/rf6.png");
   
- wii = loadAnimation("images/g1.png","images/g2.png","images/g3.png","images/g4.png","images/g5.png","images/g6.png");
+ wii = loadAnimation("images/g1.png","images/g2.png","images/g3.png","images/g4.png","images/g5.png","images/g6.png","images/g7.png","images/g8.png","images/g9.png","images/g10.png","images/g11.png","images/g12.png");
  
  gj = loadAnimation("images/rf3.png", "images/rf3.png");
 
@@ -79,24 +79,22 @@ function setup() {
   rest.scale = 0.2;
   rest.visible = false;
   
-  bkgrdSound.loop();
-  
   shots = new Group();
   gpkgrp = new Group();
   epkgrp = new Group();
   potiongrp = new Group();
   trgrp = new Group();
-  fill(255); 
 }
 
 function draw() {
   if(gmst === "startscreen"){
+    fill("lightgreen")
     textSize(20);
-    bkgrdSound.stop();
-    fill("black");
     text("Hi, This Is A Game Made By Devesh Sood", 500, 20);
+    fill("yellow");
     text("Instructions:-", 10, 80);
     text("\nYou will be followed by a witch from the starting of the game and you have \nto stay safe from the witch's lazer which she will be shooting randomly at you.", 10, 100);
+    fill("blue");
     text("\nYou have to score as much as you can", 10, 170);
     text("\n1. Gather the Good Pumpkin, For each Good Pumpkin You Eat Your Score Increases By 16.", 10, 200);
     text("\n2. Don't Eat The Evil Pumpkin, For each Evil Pumpkin You Eat Your Score Decreases By 4.", 10, 220);
@@ -104,7 +102,9 @@ function draw() {
     text("\n4. If Your Health Will be Less Than 5, You Will Get A Potion Which On Eating Will Increase Your Health By 1 \n\t\tBut At The Same Time, It Will Decrease your Score By 8.", 10, 263);
     text("\n5. Press P to pause the game and S to resume the game.", 10, 309);
     text("\n6. Press M to mute the sound and U to again play the sound.", 10, 329);
+    fill("green");
     text("Press SpaceBar To Start Playing", 540, 420);
+    fill("red");
     textSize(100);
     text("\"Scrimmage Run\"", 310, 570);
     gameStart();
@@ -132,7 +132,7 @@ function draw() {
     gi.changeAnimation("girl", gii);
   }
 
-  wi.scale = 1.5;
+  wi.scale = 0.55;
   gi.scale = 1.43;
   wi.y = gi.y -30;
   gi.velocityY = gi.velocityY +0.33;
@@ -202,15 +202,22 @@ function draw() {
       gi.changeAnimation("gidown",gd);
     }
     drawSprites();
-    textSize(20)
+    textSize(20);
+    fill("yellow");
     text("Score : " +score,1330,50);
+    fill("lightgreen");
     text("Good Pumpkins Eaten : "+gpke, 200, 50);
+    fill("lightblue");
     text("Potions Drank : "+hpt, 600, 50);
+    fill("red");
     text("Evil Pumpkins Eaten : "+epke, 900, 50)
+    fill("red");
     text("Health : " +health,20,50);
     textSize(12)
+    fill("white");
     text("Made By : Devesh Sood",1305,595);
     textSize(50);
+    fill("blue");
     text("\"Scrimmage Run\"", 18, 110);
    }
    if(gmst==="end"){

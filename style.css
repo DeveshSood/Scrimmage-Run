@@ -5,3 +5,18 @@ html, body {
 canvas {
   display: block;
 }
+
+A {
+  text-decoration: none;
+}
+
+a {
+  color:aqua;
+}
+
+body{
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+background-color:black;
+color: blanchedalmond;
+}

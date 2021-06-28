@@ -1,0 +1,88 @@
+.row{
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+HR{
+    height:7px;border-width:7; color:rgb(42, 156, 19);background-color:rgb(52, 20, 195)"
+}
+
+H3{
+    font-size: 24px;
+}
+
+p{
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+img {
+    border-style: groove;
+    border-color: blanchedalmond;
+    max-width:100%;
+    height:auto;
+}
+
+#myBtn{
+    display: none;
+    position: fixed;
+    bottom: 85px;
+    right: 28px;
+    z-index: 99;
+    font-size: 16px;
+    border: 5px;
+    outline: none;
+    background-color: rgb(236, 212, 74);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#myBtn:hover{
+    background-color: rgb(138, 9, 132);
+}
+
+h1 {
+    color: white;
+}
+
+.header{
+    background-color: rgb(19, 0, 190);
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+p,h2{
+    text-align: center;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #242323;
+    border: 6px solid rgb(7, 189, 37);
+    color: blanchedalmond;
+}
+
+a {
+    color: blue;
+}
