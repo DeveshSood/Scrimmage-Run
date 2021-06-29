@@ -5,6 +5,7 @@ var gpki,gpk,gpkgrp;
 var bki;
 var grdi,grd;
 var shi,sh;
+var poison, poisoni, poisonSound;
 var tri,tr;
 var scl = 1;
 var hi,h;
@@ -17,7 +18,7 @@ var laserSound;
 var laughSound;
 var bkgrdSound;
 
-var shots, chk = 0, potion, potiongrp, potioni, trgrp;
+var shots, poison, poisongrp, chk = 0, chk2=0, potion, potiongrp, potioni, trgrp;
 var score = 0,health = 6;
 var gpke =0;
 var epke =0;
@@ -37,7 +38,8 @@ function preload() {
   grdi = loadImage("images/grass2.PNG");
   gpki = loadImage("images/good pmk.png");
   epki = loadImage("images/evil pmk.png");
-  potioni = loadImage("images/potion.png")
+  potioni = loadImage("images/potion.png");
+  poisoni = loadImage("images/poison.png")
   shi = loadImage("images/LA.png");
   tri = loadImage("images/tree1.png");
   hi = loadImage("images/house.png");
@@ -46,6 +48,7 @@ function preload() {
   laserSound = loadSound("sounds/Comet-SoundBible.com-1256431940.wav");
   laughSound = loadSound("sounds/cackle3.wav");
   bkgrdSound = loadSound("sounds/evil_and_horror.mp3");
+  poisonSound = loadSound("sounds/poisons.mp3");
  }
 
 function setup() {
@@ -84,6 +87,7 @@ function setup() {
   epkgrp = new Group();
   potiongrp = new Group();
   trgrp = new Group();
+  poisongrp = new Group();
 }
 
 function draw() {
@@ -91,18 +95,30 @@ function draw() {
     fill("lightgreen")
     textSize(20);
     text("Hi, This Is A Game Made By Devesh Sood", 500, 20);
-    text("Sorry The Game Is Under Maintainance. Some Additions Are Being Made To The Game, Please Wait Patiently Until The Maintainance Is Over :)\n\nTill Then You Can View Our Previous Versions Of The Game By Clicking On The \"Version\" Given At the Top Left Corner Of The Page.", 0, 180);
-    text("You Can Still Play The Previous Version i.e. Version 6.8, Game By Pressing \"C\" On Your Keyboard To Continue Playing The Game.", 0, 340);
-    textSize(35);
-    text("The Maintainance Started On - 29th June At 11:00 A.M.", 260, 440);
-    text("The Maintainance Will Be Over On - 20th July At 12:00 P.M.", 230, 500);
+    fill("yellow");
+    text("Instructions:-", 10, 80);
+    text("\nYou will be followed by a witch from the starting of the game and you have \nto stay safe from the witch's lazer which she will be shooting randomly at you.", 10, 100);
+    fill("blue");
+    text("\nYou have to score as much as you can", 10, 170);
+    text("\n1. Gather The Good Pumpkin, For Each Good Pumpkin You Eat Your Score Increases By 16.", 10, 200);
+    text("\n\n2. Don't Eat The Evil Pumpkin, For Each Evil Pumpkin You Eat Your Score Decreases By 4.", 10, 200);
+    text("\n\n\n3. Each Time You Get Hit By The Witch's Lazer, Yor Health Decreases By 1 And Your Score Decreases By 5.", 10, 200);
+    text("\n\n\n\n4. The Witch Will Also Throw Acid Bottles, Each Time You Get Hit By The Acid Bottle, Your Score Will Decrease By 3.", 10, 200);
+    text("\n\n\n\n\n5. If Your Health Will be Less Than 5, You Will Get A Potion Which On Eating Will Increase Your Health By 1 \n\t\tBut At The Same Time, It Will Decrease your Score By 8.", 10, 200);
+    text("\n\n\n\n\n\n\n6. Press \"P\" To Pause The Game And \"S\" To Resume The Game.", 10, 200);
+    text("\n\n\n\n\n\n\n\n7. Press \"M\" To Mute The Sound And \"U\" To Again Play The Sound.", 10, 200);
+    fill("green");
+    textSize(28);
+    text("Press \"S\" Key To Start Playing", 500, 460);
     fill("red");
     textSize(100);
-    text("\"Scrimmage Run\"", 310, 120);
+    text("\"Scrimmage Run\"", 310, 570);
     gameStart();
   }
+  if(gmst === "noSound"){
+    playSound();
+  }
   if(gmst==="play" || gmst==="noSound"){
-  playSound();
   grd.velocityX = -4;
   if(grd.x<0){
     grd.x = 300;
@@ -130,10 +146,17 @@ function draw() {
   gi.velocityY = gi.velocityY +0.33;
   
   chk = Math.round(random(120,180));
+  chk2 = Math.round(random(200,240))
   if(frameCount%chk===0){
     shot();
     if(gmst==="play")
     laserSound.play();
+  }
+
+  if(frameCount%chk2===0){
+    poisonf();
+    if(gmst==="play")
+    poisonSound.play();
   }
   
   if(frameCount%200===0){
@@ -164,6 +187,9 @@ function draw() {
     if(shots){
       shots.setVelocityXEach(0);
     }
+    if(poisongrp){
+      poisongrp.setVelocityXEach(0);
+    }
     if(trgrp){
       trgrp.setVelocityXEach(0);
     }
@@ -186,6 +212,7 @@ function draw() {
       epkgrp.destroyEach();
       gpkgrp.destroyEach();
       shots.destroyEach();
+      poisongrp.destroyEach();
       potiongrp.destroyEach();
       gmor.visible = true;
       bkgrdSound.stop();
@@ -198,7 +225,7 @@ function draw() {
     fill("yellow");
     text("Score : " +score,1330,50);
     fill("lightgreen");
-    text("Good Pumpkins Eaten : "+gpke, 200, 50);
+    text("Good Pumpkins Eaten : "+gpke, 220, 50);
     fill("lightblue");
     text("Potions Drank : "+hpt, 600, 50);
     fill("red");
@@ -244,11 +271,23 @@ function shot() {
   sh = createSprite(100,wi.y+30,20,20);
   sh.addImage(shi);
   sh.scale = 0.1;
+  if(sh){
   sh.depth = wi.depth -1;
   sh.depth = tr.depth +1;
+  }
   sh.velocityX = 3.6;
   //sh.debug = true;
   shots.add(sh);
+}
+function poisonf() {
+  poison = createSprite(100,wi.y+30,20,20);
+  poison.addImage(poisoni);
+  poison.scale = 0.15;
+  poison.depth = wi.depth -1;
+  poison.depth = tr.depth +1;
+  poison.velocityX = 3.6;
+  //poison.debug = true;
+  poisongrp.add(poison);
 }
 function hits(){
   for(i = 0;i < shots.length;i++){
@@ -278,6 +317,12 @@ function hits(){
       health = health + 1;
       score = score - 8;
       hpt++;
+    }
+  }
+  for(m = 0;m < poisongrp.length;m++){
+    if(poisongrp[m].isTouching(gi)){
+      poisongrp[m].destroy();
+      score = score - 3;
     }
   }
 }
@@ -310,31 +355,6 @@ function hpPotion(){
   //potion.debug = true;
   potion.setCollider("circle",0,0,45);
   potiongrp.add(potion);
-}
-function dreset(){
-  gmst = "play";
-  h = createSprite(400,380,20,20);
-  h.addImage(hi);
-  h.velocityX = -5;
-  h.depth = wi.depth -1;
-  h.depth = tr.depth +1;
-  h.depth = grd.depth -1;
-  wi.y = 220;
-  gi.y = 520;
-  wi.visible = true;
-  gi.visible = true;
-  if(epk){
-    epk.visible = true;
-  }
-  if(gpk){
-    gpk.visible = true;
-  }
-  hpt=0;
-  epke=0;
-  gpke=0;
-  score = 0;
-  health = 6;
-  bkgrdSound.loop();
 }
 function Reset(){
   if(mousePressedOver(rest) && mouseDown("leftButton") || keyDown("space")){
@@ -383,6 +403,9 @@ function pause(){
          if(shots){
           shots.setVelocityXEach(3.6);
          }
+         if(poisongrp){
+          poisongrp.setVelocityXEach(3.6);
+         }
          if(trgrp){
           trgrp.setVelocityXEach(-5);
          }
@@ -398,7 +421,7 @@ function playSound(){
   }
 }
 function gameStart(){
-  if(keyCode === 67){
+  if(keyCode === 83){
     gmst = 'play';
     bkgrdSound.loop();
     h = createSprite(400,380,20,20);
