@@ -91,22 +91,14 @@ function draw() {
     fill("lightgreen")
     textSize(20);
     text("Hi, This Is A Game Made By Devesh Sood", 500, 20);
-    fill("yellow");
-    text("Instructions:-", 10, 80);
-    text("\nYou will be followed by a witch from the starting of the game and you have \nto stay safe from the witch's lazer which she will be shooting randomly at you.", 10, 100);
-    fill("blue");
-    text("\nYou have to score as much as you can", 10, 170);
-    text("\n1. Gather the Good Pumpkin, For each Good Pumpkin You Eat Your Score Increases By 16.", 10, 200);
-    text("\n2. Don't Eat The Evil Pumpkin, For each Evil Pumpkin You Eat Your Score Decreases By 4.", 10, 220);
-    text("\n3. Each Time You Get Hit By The Witch's Lazer, Yor Health Decreases By 1 And Your Score Decreases By 5.", 10, 240);
-    text("\n4. If Your Health Will be Less Than 5, You Will Get A Potion Which On Eating Will Increase Your Health By 1 \n\t\tBut At The Same Time, It Will Decrease your Score By 8.", 10, 263);
-    text("\n5. Press P to pause the game and S to resume the game.", 10, 309);
-    text("\n6. Press M to mute the sound and U to again play the sound.", 10, 329);
-    fill("green");
-    text("Press SpaceBar To Start Playing", 540, 420);
+    text("Sorry The Game Is Under Maintainance. Some Additions Are Being Made To The Game, Please Wait Patiently Until The Maintainance Is Over :)\n\nTill Then You Can View Our Previous Versions Of The Game By Clicking On The \"Version\" Given At the Top Left Corner Of The Page.", 0, 180);
+    text("You Can Still Play The Previous Version i.e. Version 6.8, Game By Pressing \"C\" On Your Keyboard To Continue Playing The Game.", 0, 340);
+    textSize(35);
+    text("The Maintainance Started On - 29th June At 11:00 A.M.", 260, 440);
+    text("The Maintainance Will Be Over On - 20th July At 12:00 P.M.", 230, 500);
     fill("red");
     textSize(100);
-    text("\"Scrimmage Run\"", 310, 570);
+    text("\"Scrimmage Run\"", 310, 120);
     gameStart();
   }
   if(gmst==="play" || gmst==="noSound"){
@@ -406,7 +398,7 @@ function playSound(){
   }
 }
 function gameStart(){
-  if(keyCode === 32){
+  if(keyCode === 67){
     gmst = 'play';
     bkgrdSound.loop();
     h = createSprite(400,380,20,20);
